@@ -1,0 +1,70 @@
+============================================================
+  TRADE REAPER — Quick Start
+============================================================
+
+FILES:
+  trade_reaper.py        - Dashboard app + bridge server
+  rocket_scraper.js      - Browser scraper for Rocket Scooter
+  TradeReaperStrategy.cs - NinjaTrader 8 strategy
+  levels_flat.csv        - Auto-generated data file
+  levels_data.json       - Auto-generated data file
+
+============================================================
+STEP 1: Run the Dashboard
+============================================================
+  Open Command Prompt → navigate to this folder:
+    cd Desktop\TradeReaper
+    python trade_reaper.py
+
+  A window will open showing live status.
+
+============================================================
+STEP 2: Start the Browser Scraper
+============================================================
+  Open rocket.place/pro-plus/ → wait for charts
+  Press F12 → Console
+  Paste contents of rocket_scraper.js → Enter
+  Dashboard should show "CONNECTED"
+
+============================================================
+STEP 3: Install NinjaTrader Strategy
+============================================================
+  NinjaTrader 8:
+    Tools → Edit NinjaScript → Strategies
+    Right-click → New → "TradeReaperStrategy"
+    Replace ALL code with TradeReaperStrategy.cs
+    Press F5 to compile
+
+  Add to chart:
+    Right-click chart → Strategies → TradeReaperStrategy
+    Set CSV path to:
+      C:\Users\zesty\OneDrive\Desktop\TradeReaper\levels_flat.csv
+    Set Instrument Key to ES or NQ
+    KEEP "Enable Trading" OFF until logic is added
+
+============================================================
+SCHEDULE
+============================================================
+  System auto-detects market hours: 9:30 AM - 4:00 PM ET
+  Mon-Fri only. Dashboard shows status at all times.
+
+============================================================
+DATA CAPTURED
+============================================================
+  Fast (every 2 sec):
+    - SP500 Resilience (3 numbers)
+    - NQ100 Resilience (3 numbers)
+    - DD Ratio
+    - Live ES/NQ prices + direction
+
+  Levels (every 10 sec):
+    - HP, MHP, HG, Open, Close
+    - DD Upper/Lower bands
+    - All Bull Zones
+    - All Bear Zones
+    - Header HP/MHP
+
+============================================================
+DISCLAIMER: This is a tool, not financial advice.
+Always paper trade first. Use at your own risk.
+============================================================

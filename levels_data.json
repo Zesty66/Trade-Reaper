@@ -1,0 +1,69 @@
+{
+  "scrapeTime": "2026-03-23T22:32:28.317Z",
+  "scrapeCount": 1826,
+  "sp500Resilience": {
+    "res": 80.06,
+    "sp": -19.06,
+    "hp": -36.45,
+    "hpNow": -36.45009883821402,
+    "mhpNow": -19.057094368530578
+  },
+  "nq100Resilience": {
+    "res": 94.4,
+    "sp": -29.95,
+    "hp": -44.42,
+    "hpNow": -44.42292585596239,
+    "mhpNow": -29.94914305968443
+  },
+  "ru2kResilience": 77.43,
+  "ddRatio": 0.68,
+  "livePrice": {
+    "SPY": 6675,
+    "QQQ": 24572.75,
+    "IWM": 2529.9
+  },
+  "alertDirection": {
+    "SPY": "U",
+    "QQQ": "U",
+    "IWM": "U"
+  },
+  "headerHP": {
+    "SP": 585,
+    "NQ": 585
+  },
+  "headerMHP": {
+    "SP": 582.5,
+    "NQ": 582.5
+  },
+  "chartLevels": {
+    "NQ": {
+      "instrument": "NQ",
+      "bullZones": [],
+      "bearZones": [],
+      "hp": null,
+      "mhp": null,
+      "hg": 24303.625,
+      "dd": {
+        "upper": 24355.47625,
+        "lower": 23847.52375
+      },
+      "open": 24493.25,
+      "close": 24114
+    },
+    "ES": {
+      "instrument": "ES",
+      "bullZones": [],
+      "bearZones": [],
+      "hp": null,
+      "mhp": null,
+      "hg": 6610.375,
+      "dd": {
+        "upper": 6655.41575,
+        "lower": 6521.58425
+      },
+      "open": 6658,
+      "close": 6562.75
+    }
+  },
+  "serverTime": "2026-03-23T18:32:28.320788"
+}
