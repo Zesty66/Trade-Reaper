@@ -185,7 +185,7 @@ namespace NinjaTrader.NinjaScript.Strategies
         {
             if (State == State.SetDefaults)
             {
-                Description = "Trade Reaper v3 — Multi-account auto-trading with Rocket Scooter levels";
+                Description = "Trade Reaper v3 - Multi-account auto-trading with Rocket Scooter levels";
                 Name = "TradeReaperStrategy";
                 Calculate = Calculate.OnEachTick;
                 EntriesPerDirection = 1;
@@ -217,7 +217,7 @@ namespace NinjaTrader.NinjaScript.Strategies
                 }
                 else
                 {
-                    Print("TradeReaper: WARNING — No account profile set! Enter a profile name from Trade Reaper's Account Manager.");
+                    Print("TradeReaper: WARNING - No account profile set! Enter a profile name from Trade Reaper's Account Manager.");
                 }
 
                 // Detect instrument
@@ -424,7 +424,7 @@ namespace NinjaTrader.NinjaScript.Strategies
             // --- End-of-day flatten: if market just closed and we're still in a trade, get out ---
             if (wasOkToTrade && !okToTrade && Position.MarketPosition != MarketPosition.Flat)
             {
-                Print("TradeReaper: MARKET CLOSED — flattening all positions");
+                Print("TradeReaper: MARKET CLOSED - flattening all positions");
                 Flatten("MarketClose");
                 currentTrade = null;
             }
@@ -440,7 +440,7 @@ namespace NinjaTrader.NinjaScript.Strategies
                     // If we're in a trade and data goes stale, flatten for safety
                     if (currentTrade != null && Position.MarketPosition != MarketPosition.Flat)
                     {
-                        Print("TradeReaper: CSV data is " + (int)dataAge + "s old — flattening for safety");
+                        Print("TradeReaper: CSV data is " + (int)dataAge + "s old - flattening for safety");
                         Flatten("StaleData");
                         currentTrade = null;
                     }
@@ -459,7 +459,7 @@ namespace NinjaTrader.NinjaScript.Strategies
             if (DailyLossLimit > 0 && totalPnL <= -DailyLossLimit)
             {
                 if (!dailyLimitHit)
-                    Print("TradeReaper: DAILY LOSS LIMIT HIT at $" + totalPnL.ToString("F2") + " — stopping trading");
+                    Print("TradeReaper: DAILY LOSS LIMIT HIT at $" + totalPnL.ToString("F2") + " - stopping trading");
                 dailyLimitHit = true;
                 if (Position.MarketPosition != MarketPosition.Flat) Flatten("DLL_Hit");
                 currentTrade = null;
@@ -467,7 +467,7 @@ namespace NinjaTrader.NinjaScript.Strategies
             if (DailyProfitTarget > 0 && totalPnL >= DailyProfitTarget)
             {
                 if (!dailyProfitHit)
-                    Print("TradeReaper: DAILY PROFIT TARGET HIT at $" + totalPnL.ToString("F2") + " — stopping trading");
+                    Print("TradeReaper: DAILY PROFIT TARGET HIT at $" + totalPnL.ToString("F2") + " - stopping trading");
                 dailyProfitHit = true;
                 if (Position.MarketPosition != MarketPosition.Flat) Flatten("DailyProfit_Hit");
                 currentTrade = null;
@@ -791,7 +791,7 @@ namespace NinjaTrader.NinjaScript.Strategies
             // --- CONFLUENCE DECAY CHECK ---
             if (CheckConfluenceDecay())
             {
-                Print("TradeReaper: Confluence decayed — exiting " + currentTrade.Setup);
+                Print("TradeReaper: Confluence decayed - exiting " + currentTrade.Setup);
                 Flatten("ConfluenceDecay");
                 currentTrade = null;
                 return;
@@ -963,7 +963,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 
             // Fallback: Desktop\TradeReaper (will show clear error if missing)
             string fallback = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TradeReaper");
-            Print("TradeReaper: WARNING — Could not find TradeReaper folder. Expected at: " + fallback);
+            Print("TradeReaper: WARNING - Could not find TradeReaper folder. Expected at: " + fallback);
             return fallback;
         }
 
@@ -1512,8 +1512,9 @@ namespace NinjaTrader.NinjaScript.Strategies
             catch { }
 
             if (names.Count == 0)
-                names.Add("(no profiles found — put TradeReaper folder on Desktop)");
+                names.Add("(no profiles found - put TradeReaper folder on Desktop)");
 
             return new StandardValuesCollection(names);
         }
     }
+}
