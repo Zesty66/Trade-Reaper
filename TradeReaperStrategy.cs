@@ -1463,10 +1463,6 @@ namespace NinjaTrader.NinjaScript.Strategies
     // ==============================================
     public class AccountProfileConverter : TypeConverter
     {
-        private static readonly string configPath =
-            System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
-                "TradeReaper", "accounts_config.json");
-
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context) { return true; }
         public override bool GetStandardValuesExclusive(ITypeDescriptorContext context) { return false; } // allow typing too
 
@@ -1475,15 +1471,21 @@ namespace NinjaTrader.NinjaScript.Strategies
             var names = new List<string>();
             try
             {
-                // Also check OneDrive Desktop path
-                string path1 = configPath;
-                string path2 = System.IO.Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                    @"OneDrive\Desktop\TradeReaper\accounts_config.json");
+                // Search all common TradeReaper locations (same as FindTradeReaperFolder)
+                string[] searchPaths = new string[]
+                {
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TradeReaper", "accounts_config.json"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "TradeReaper", "accounts_config.json"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TradeReaper", "accounts_config.json"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "OneDrive", "Desktop", "TradeReaper", "accounts_config.json"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "OneDrive", "Documents", "TradeReaper", "accounts_config.json"),
+                };
 
                 string usePath = null;
-                if (File.Exists(path1)) usePath = path1;
-                else if (File.Exists(path2)) usePath = path2;
+                foreach (string p in searchPaths)
+                {
+                    if (File.Exists(p)) { usePath = p; break; }
+                }
 
                 if (usePath != null)
                 {
@@ -1510,9 +1512,8 @@ namespace NinjaTrader.NinjaScript.Strategies
             catch { }
 
             if (names.Count == 0)
-                names.Add("(no profiles found)");
+                names.Add("(no profiles found — put TradeReaper folder on Desktop)");
 
             return new StandardValuesCollection(names);
         }
     }
-}
